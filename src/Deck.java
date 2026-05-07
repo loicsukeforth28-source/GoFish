@@ -3,6 +3,7 @@ public class Deck {
     int count;
     public static void main(String[] args) {
         Deck deck = new Deck();
+        Card requestedCard;
     }
     public Deck(){
             for(int x=1;x<cards.length/13+1;x++){
@@ -17,7 +18,13 @@ public class Deck {
         System.out.println("shuffling");
             shuffle();
             printDeck();
-            play();
+        for(int i=0;i<7;i++) {
+            System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
+            player.addCard(cards[i]);
+        }
+        for(int i=0;i<7;i++) {
+         //   if (requestedCard == player.hand[i]);
+        }
     }
     public void printDeck(){
         for(int i=0;i<cards.length; i++){
@@ -36,6 +43,7 @@ public class Deck {
     public void play(){
         for(int i=0;i<7;i++) {
             System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
+
         }
     }
 }
