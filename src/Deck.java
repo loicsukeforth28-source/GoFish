@@ -1,6 +1,8 @@
 public class Deck {
     Card [] cards=new Card[52];
     int count;
+    public boolean hasCard;
+    Card requestedCard=null;
     public static void main(String[] args) {
         Deck deck = new Deck();
         Card requestedCard;
@@ -22,9 +24,7 @@ public class Deck {
             System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
             player.addCard(cards[i]);
         }
-        for(int i=0;i<7;i++) {
-         //   if (requestedCard == player.hand[i]);
-        }
+
     }
     public void printDeck(){
         for(int i=0;i<cards.length; i++){
@@ -45,6 +45,18 @@ public class Deck {
             System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
 
         }
+    }
+    public void requestCard(Player player, Player other){
+        for(int i=0;i<7;i++) {
+            if (requestedCard == player.hand[i]){
+                hasCard=true;
+            } else
+                hasCard=false;
+            if (hasCard){
+                other.hand[other.numCards+1]=player.hand[i];
+            }
+        }
+
     }
 }
 
