@@ -21,4 +21,9 @@ public class Card {
     public void printCard(){
         System.out.println("order = "+order+" & value = "+value+" & is the suit of "+suit);
     }
+    public String makeString(){
+        String mystring =value+"";
+        return mystring;
+    }
+
 }

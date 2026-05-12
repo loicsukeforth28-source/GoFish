@@ -1,11 +1,11 @@
+import java.util.Scanner;
 public class Deck {
     Card [] cards=new Card[52];
     int count;
+    int count2;
     public boolean hasCard;
-    Card requestedCard=null;
     public static void main(String[] args) {
         Deck deck = new Deck();
-        Card requestedCard;
     }
     public Deck(){
             for(int x=1;x<cards.length/13+1;x++){
@@ -20,11 +20,16 @@ public class Deck {
         System.out.println("shuffling");
             shuffle();
             printDeck();
-        for(int i=0;i<7;i++) {
+        for(int i=count2;i<7;i++) {
             System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
             player.addCard(cards[i]);
+            count2++;
         }
-
+        for(int i=count2;i<14;i++) {
+            bot.addCard(cards[i]);
+            count2++;
+        }
+        requestCard(bot,player);
     }
     public void printDeck(){
         for(int i=0;i<cards.length; i++){
@@ -47,8 +52,10 @@ public class Deck {
         }
     }
     public void requestCard(Player player, Player other){
+        Scanner sc=new Scanner(System.in);
+        String requestedCard = sc.nextLine();
         for(int i=0;i<7;i++) {
-            if (requestedCard == player.hand[i]){
+            if (requestedCard.equals(player.hand[i].makeString())){
                 hasCard=true;
             } else
                 hasCard=false;
