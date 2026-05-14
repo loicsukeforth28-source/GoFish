@@ -9,7 +9,10 @@ public Card [] hand;
 
     }
     public void printHand(){
-       // for(int i=0);
+        for(int i=0;i<numCards;i++) {
+            System.out.println("you have the " + hand[i].value + " of " + hand[i].suit+" in "+hand[i].order);
+
+        }
     }
     public void addCard(Card cardAdded){
         hand[numCards]=cardAdded;
