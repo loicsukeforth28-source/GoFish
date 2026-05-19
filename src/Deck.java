@@ -18,7 +18,7 @@ public class Deck {
                 }
             }
             Player player = new Player(0,true);
-            Player bot = new Player(0,false);
+            Player other = new Player(0,false);
         printDeck();
         System.out.println("shuffling");
             shuffle();
@@ -31,12 +31,16 @@ public class Deck {
         System.out.println("other hand" );
         for(int i=count2;i<14;i++) {
             System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
-            bot.addCard(cards[i]);
+            other.addCard(cards[i]);
             count2++;
         }
-        while(player.numCards>0&&bot.numCards>0){
-        requestCard(bot,player);
-        requestCard(player,bot);
+        while(true){
+        if(player.numCards>0&&other.numCards>0){
+            Scanner sc=new Scanner(System.in);
+            String requestedCard = sc.nextLine();
+        requestCard(other,player,requestedCard);
+        requestCard(player,other,requestedCard);
+        }
         }
     }
     public void printDeck(){
@@ -53,18 +57,10 @@ public class Deck {
 
         }
     }
-    public void play(){
-        for(int i=0;i<7;i++) {
-            System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
-
-        }
-    }
-    public void requestCard(Player player, Player other){
-        Scanner sc=new Scanner(System.in);
-        String requestedCard = sc.nextLine();
+    public void requestCard(Player player, Player other,String askedCard){
         for(int i=0;i<player.numCards;i++) {
            // System.out.println(requestedCard.equals(player.hand[i].makeString()));
-            if (requestedCard.equals(player.hand[i].makeString())&&!oneCard){
+            if (askedCard.equals(player.hand[i].makeString())&&!oneCard){
                 hasCard=true;
                 oneCard=true;
             } else{
@@ -74,7 +70,6 @@ public class Deck {
             }
             if (hasCard){
                 other.printHand();
-                System.out.println(other.numCards);
                 other.addCard(player.hand[i]);
                 other.printHand();
                 replacingCard=true;
@@ -92,7 +87,10 @@ public class Deck {
         }
         if(goFish){
             System.out.println("Go Fish");
-      //      cards[player.numCards+1]=player.hand[player.numCards+1]
+            other.hand[player.numCards]=cards[count2];
+            other.numCards++;
+          count2++;
+          other.printHand();
         }
         replacingCard=false;
         oneCard=false;
