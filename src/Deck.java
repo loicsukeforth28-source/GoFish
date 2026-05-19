@@ -34,7 +34,10 @@ public class Deck {
             bot.addCard(cards[i]);
             count2++;
         }
+        while(player.numCards>0&&bot.numCards>0){
         requestCard(bot,player);
+        requestCard(player,bot);
+        }
     }
     public void printDeck(){
         for(int i=0;i<cards.length; i++){
@@ -89,6 +92,7 @@ public class Deck {
         }
         if(goFish){
             System.out.println("Go Fish");
+      //      cards[player.numCards+1]=player.hand[player.numCards+1]
         }
         replacingCard=false;
         oneCard=false;
