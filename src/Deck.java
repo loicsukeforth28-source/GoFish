@@ -30,18 +30,17 @@ public class Deck {
         }
         System.out.println("other hand" );
         for(int i=count2;i<14;i++) {
-            System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
+        System.out.println("you have the " + cards[i].value + " of " + cards[i].suit);
             other.addCard(cards[i]);
             count2++;
         }
-        while(true){
-        if(player.numCards>0&&other.numCards>0){
+        while(player.numCards>0&&other.numCards>0){
             Scanner sc=new Scanner(System.in);
             String requestedCard = sc.nextLine();
         requestCard(other,player,requestedCard);
         requestCard(player,other,requestedCard);
         }
-        }
+
     }
     public void printDeck(){
         for(int i=0;i<cards.length; i++){
@@ -69,7 +68,7 @@ public class Deck {
 
             }
             if (hasCard){
-                other.printHand();
+              //  other.printHand();
                 other.addCard(player.hand[i]);
                 other.printHand();
                 replacingCard=true;
@@ -84,6 +83,7 @@ public class Deck {
                     player.hand[i]=null;
                 }
             }
+
         }
         if(goFish){
             System.out.println("Go Fish");
